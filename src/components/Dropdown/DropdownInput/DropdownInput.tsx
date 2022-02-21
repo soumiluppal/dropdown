@@ -38,6 +38,7 @@ const SelectButton = styled.input`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  padding-left: 10px;
   padding-right: 25px;
   box-sizing: border-box;
 `;

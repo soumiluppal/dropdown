@@ -19,6 +19,11 @@ The multiselect prop can be used to allow the user to select multiple items at o
 <Dropdown label="Label goes here" multiselect>
 ```
 
+To access selected values, the `onChange` prop can be used:
+```
+<Dropdown label="Label goes here" onChange={(value) => {//do something}}>
+```
+
 ## Installation
 
 - Clone the repo and install the dependencies:

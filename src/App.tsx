@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Dropdown from "./components/Dropdown";
 import DropdownItem from "./components/Dropdown/DropdownItem";
@@ -10,7 +9,11 @@ function App() {
       <div style={{ display: "flex", flexDirection: "row" }}>
         <div style={{ width: "20em", margin: "20px" }}>
           <h2>Multiselect dropdown demo:</h2>
-          <Dropdown label="Pick A Number" multiselect>
+          <Dropdown
+            label="Pick A Number"
+            multiselect
+            onChange={(values) => null}
+          >
             <DropdownItem value="one">One</DropdownItem>
             <DropdownItem value="two">Two</DropdownItem>
             <DropdownItem value="three">Three</DropdownItem>
@@ -27,13 +30,6 @@ function App() {
             <DropdownItem value="four">Four</DropdownItem>
             <DropdownItem value="five">Five</DropdownItem>
           </Dropdown>
-        </div>
-        <div style={{ width: "20em", margin: "20px" }}>
-          <h2>Dropdown demo using item list instead of custom components:</h2>
-          <Dropdown
-            label="Pick A Number"
-            items={["One", "Two", "Three", "Four"]}
-          ></Dropdown>
         </div>
       </div>
     </div>

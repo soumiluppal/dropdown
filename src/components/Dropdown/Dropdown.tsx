@@ -3,19 +3,29 @@ import styled from "styled-components";
 import { DropdownItemValue } from "./DropdownItem";
 import DropdownInput from "./DropdownInput";
 import { getTextToDisplay } from "./getTextToDisplay";
-import ListToDropdownItems from "./ListToDropdownItems";
 
 interface DropdownProps {
   label: string;
   multiselect?: boolean;
-  items?: DropdownItemValue[];
+  onChange?: (
+    values: DropdownItemValue | DropdownItemValue[] | undefined
+  ) => void;
 }
 
 const Dropdown: FC<DropdownProps> = (props) => {
-  const { label, multiselect, items, children } = props;
+  const { label, multiselect, onChange, children } = props;
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValues, setSelectedValues] = useState<DropdownItemValue[]>([]);
   const childrenArray = React.Children.toArray(children);
+
+  useEffect(
+    () =>
+      onChange &&
+      onChange(
+        multiselect ? selectedValues[0] : selectedValues
+      ),
+    [selectedValues]
+  );
 
   useEffect(() => {
     setTimeout(
@@ -73,7 +83,6 @@ const Dropdown: FC<DropdownProps> = (props) => {
                 <AllButton onClick={handleDeselectAll}>Deselect All</AllButton>
               </div>
             )}
-            {items && <ListToDropdownItems itemList={items} />}
             {React.Children.map(children, (item) =>
               React.isValidElement(item)
                 ? React.cloneElement(item, {
