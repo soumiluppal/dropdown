@@ -7,13 +7,35 @@ import DropdownItem from "./components/Dropdown/DropdownItem";
 function App() {
   return (
     <div className="App">
-      <Dropdown label="Choose Something" multiselect>
-        <DropdownItem value="one">One</DropdownItem>
-        <DropdownItem value="two">Two</DropdownItem>
-        <DropdownItem value="three">Three</DropdownItem>
-        <DropdownItem value="four">Four</DropdownItem>
-        <DropdownItem value="five">Five</DropdownItem>
-      </Dropdown>
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <div style={{ width: "20em", margin: "20px" }}>
+          <h2>Multiselect dropdown demo:</h2>
+          <Dropdown label="Pick A Number" multiselect>
+            <DropdownItem value="one">One</DropdownItem>
+            <DropdownItem value="two">Two</DropdownItem>
+            <DropdownItem value="three">Three</DropdownItem>
+            <DropdownItem value="four">Four</DropdownItem>
+            <DropdownItem value="five">Five</DropdownItem>
+          </Dropdown>
+        </div>
+        <div style={{ width: "20em", margin: "20px" }}>
+          <h2>Single select dropdown demo:</h2>
+          <Dropdown label="Pick A Number">
+            <DropdownItem value="one">One</DropdownItem>
+            <DropdownItem value="two">Two</DropdownItem>
+            <DropdownItem value="three">Three</DropdownItem>
+            <DropdownItem value="four">Four</DropdownItem>
+            <DropdownItem value="five">Five</DropdownItem>
+          </Dropdown>
+        </div>
+        <div style={{ width: "20em", margin: "20px" }}>
+          <h2>Dropdown demo using item list instead of custom components:</h2>
+          <Dropdown
+            label="Pick A Number"
+            items={["One", "Two", "Three", "Four"]}
+          ></Dropdown>
+        </div>
+      </div>
     </div>
   );
 }

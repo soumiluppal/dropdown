@@ -13,7 +13,7 @@ const ListToDropdownItems: FC<ListToDropdownItemsProps> = (props) => {
   return (
     <>
       {itemList.map((item: DropdownItemValue, index) => (
-        <DropdownItem value={index}>{item}</DropdownItem>
+        <DropdownItem key={index} value={index}>{item}</DropdownItem>
       ))}
     </>
   );
