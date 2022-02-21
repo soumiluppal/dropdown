@@ -3,7 +3,7 @@ import styled from "styled-components";
 import downArrow from "./down-arrow.svg";
 
 interface DropdownInputProps {
-  placeholder: string;
+  placeholder?: string;
   value: string;
   onClick: () => void;
 }
@@ -18,6 +18,7 @@ const DropdownInput: FC<DropdownInputProps> = (props) => {
         onClick={onClick}
         value={value}
         placeholder={placeholder}
+        role="button"
       />
       <SelectIcon src={downArrow} />
     </SelectButtonContainer>

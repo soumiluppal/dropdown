@@ -5,7 +5,7 @@ import DropdownInput from "./DropdownInput";
 import { getTextToDisplay } from "./getTextToDisplay";
 
 interface DropdownProps {
-  label: string;
+  label?: string;
   multiselect?: boolean;
   onChange?: (
     values: DropdownItemValue | DropdownItemValue[] | undefined
@@ -20,10 +20,7 @@ const Dropdown: FC<DropdownProps> = (props) => {
 
   useEffect(
     () =>
-      onChange &&
-      onChange(
-        multiselect ? selectedValues[0] : selectedValues
-      ),
+      onChange && onChange(multiselect ? selectedValues[0] : selectedValues),
     [selectedValues]
   );
 
@@ -54,7 +51,8 @@ const Dropdown: FC<DropdownProps> = (props) => {
     }
   };
 
-  const handleSelectAll = () => {
+  const handleSelectAll = (e: MouseEvent) => {
+    e.stopPropagation();
     setSelectedValues(
       childrenArray.map((child) =>
         React.isValidElement(child) ? child.props.value : null
@@ -62,16 +60,17 @@ const Dropdown: FC<DropdownProps> = (props) => {
     );
   };
 
-  const handleDeselectAll = () => {
+  const handleDeselectAll = (e: MouseEvent) => {
+    e.stopPropagation();
     setSelectedValues([]);
   };
 
   return (
     <DropdownContainer>
-      <Label hide={!selectedValues.length}>{label}</Label>
+      {label && <Label hide={!selectedValues.length}>{label}</Label>}
       <DropdownMenuContainer>
         <DropdownInput
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => (isOpen ? handleClose() : setIsOpen(!isOpen))}
           value={getTextToDisplay(childrenArray, selectedValues)}
           placeholder={label}
         />
@@ -79,8 +78,12 @@ const Dropdown: FC<DropdownProps> = (props) => {
           <DropdownMenu>
             {!!multiselect && (
               <div>
-                <AllButton onClick={handleSelectAll}>Select All</AllButton>
-                <AllButton onClick={handleDeselectAll}>Deselect All</AllButton>
+                <AllButton onClick={(e: any) => handleSelectAll(e)}>
+                  Select All
+                </AllButton>
+                <AllButton onClick={(e: any) => handleDeselectAll(e)}>
+                  Deselect All
+                </AllButton>
               </div>
             )}
             {React.Children.map(children, (item) =>

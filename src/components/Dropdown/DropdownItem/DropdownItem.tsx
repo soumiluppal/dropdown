@@ -16,7 +16,7 @@ const DropdownItem: FC<DropdownItemProps> = (props) => {
   return (
     <ItemButton selected={!!selected} disabled={disabled} onClick={onClick}>
       {withCheckbox && (
-        <input type="checkbox" value="bubbles" checked={!!selected} readOnly/>
+        <input type="checkbox" data-test-id="checkbox" checked={!!selected} readOnly/>
       )}
       {children}
     </ItemButton>

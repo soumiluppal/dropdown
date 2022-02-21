@@ -34,3 +34,7 @@ To access selected values, the `onChange` prop can be used:
 ### `yarn start`
 
 Runs the app in the development mode locally. You can view the demos at `localhost:3000` in `App.tsx`.
+
+### `yarn test`
+
+Runs the test modules in watch mode.
